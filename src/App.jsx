@@ -5,10 +5,12 @@ import DescToday from './components/DescToday'
 
 export default function App() {
   return (
-    < >
+    <div className='flex flex-col md:flex-row'>
       <HeaderAside />
-      <OtherDays />
-      <DescToday/>
-    </>
+      <div className='flex flex-col'>
+        <OtherDays />
+        <DescToday />
+      </div>
+    </div>
   )
 }

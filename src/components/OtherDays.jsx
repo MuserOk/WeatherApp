@@ -8,8 +8,12 @@ export default function OtherDays() {
         <button className='bg-gray-300 w-8 h-8 rounded-full'>°C</button>
         <button className='bg-gray-300 w-8 h-8 rounded-full'>°F</button>
     </div>
-    <div className='grid grid-cols-2 gap-4 p-4'>
+    <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4'>
       {/*Cards 5 days*/}
+      <AnotherDay/>
+      <AnotherDay/>
+      <AnotherDay/>
+      <AnotherDay/>
       <AnotherDay/>
     </div>
     </>
