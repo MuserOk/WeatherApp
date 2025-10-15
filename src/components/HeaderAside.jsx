@@ -1,14 +1,42 @@
 import React from 'react'
 
-export default function HeaderAside() {
+export default function HeaderAside({data, loading, error}) {
+  if (loading) {
+    return (
+      <div className='bg-[#1e213a] w-screen md:w-[45%] min-h-screen pt-7 flex flex-col items-center justify-center'>
+        <p>Cargando datos...</p>
+      </div>
+    );
+  }
+ if (error) {
+    return (
+      <div className='bg-[#1e213a] w-screen md:w-[45%] min-h-screen pt-7 flex flex-col items-center justify-center'>
+        <p className='text-red-500'>Error: {error.message || 'Ocurrió un error desconocido.'}</p>
+      </div>
+    );
+  }
+ if (!data) {
+     return (
+      <div className='bg-[#1e213a] w-screen md:w-[45%] min-h-screen pt-7 flex flex-col items-center justify-center'>
+        <p>Esperando datos del clima...</p>
+        {/* Podrías mostrar aquí el formulario y el botón de ubicación si quieres */}
+        <form className='mt-10 hover:bg-gray-300 active:bg-gray-300 bg-gray-400 py-1.5 w-40 md:w-32 flex justify-center' action="">
+          <input className=' cursor-pointer h-full w-38 md:w-30 text-center placeholder-white' type="text" placeholder='Search fo Places' />
+        </form>
+        <img className='mt-5 hover:bg-gray-300 active:bg-gray-500 cursor-pointer w-10 md:w-8 h-10 md:h-8 bg-gray-400 rounded-full p-1.5' src="/location.svg" alt="Get location" />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className='bg-[#1e213a] w-scren md:w-[45%] min-h-screen pt-7 flex flex-col items-center'>
         <header className='pb-1 mt-10 flex justify-between items-center w-full md:justify-around px-5 md:px-0'>
-          <form className='bg-gray-400 py-1.5 w-40 md:w-32' action="">
-            <input className='w-full text-center placeholder-white' type="text" placeholder='Search fo Places' />
+          <form className='hover:bg-gray-300 active:bg-gray-300 bg-gray-400 py-1.5 w-40 md:w-32 flex justify-center' action="">
+            <input className=' cursor-pointer h-full w-38 md:w-30 text-center placeholder-white' type="text" placeholder='Search fo Places' />
           </form>
-          <img className='w-10 md:w-8 h-10 md:h-8 bg-gray-400 rounded-full p-1.5' src="/location.svg" alt="" />
+          
+          <img className='hover:bg-gray-300 active:bg-gray-500 cursor-pointer w-10 md:w-8 h-10 md:h-8 bg-gray-400 rounded-full p-1.5' src="/location.svg" alt="" />
         </header>
         <div className='flex flex-col items-center md:pt-10 md:w-full md:overflow-hidden'>
           <div className="relative min-w-screen h-50 md:w-[30%]">
@@ -20,7 +48,7 @@ export default function HeaderAside() {
 
           <div className="flex items-center justify-center md:pt-16">
             <h2 className="font-medium md:text-8xl text-9xl text-[#E7E7EB] my-8">
-              24
+              {data.main.temp}
             </h2>
             <h3 className=" mt-6 md:text-5xl text-6xl text-[#A09FB1] font-medium">
               °C
