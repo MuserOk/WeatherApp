@@ -25,7 +25,7 @@ export default function useData(url) {
     };
 
     getData();
-  }, [url]); // El array vacío asegura que este efecto se ejecute solo una vez al montar el componente
+  }, [url]); // se ejecuta una vez y luego solo si hay cambios
 
   return { loading, data, error };
 }
